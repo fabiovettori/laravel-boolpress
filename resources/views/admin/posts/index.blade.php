@@ -20,6 +20,7 @@
                             <td> {{ $post->title }} </td>
                             <td> {{ $post->slug }} </td>
                             <td>
+<<<<<<< HEAD
                                 <a class="btn btn-info p-1" href=" {{ route('admin.posts.show', $post->id) }}">
                                     <span class="far fa-eye"></span>
                                 </a>
@@ -32,6 +33,17 @@
                                 <a class="btn btn-success p-1" href=" {{ route('admin.posts.create') }}">
                                     <span class="far fa-plus-square"></span>
                                 </a>
+=======
+                                <a class="btn btn-info" href=" {{ route('admin.posts.show', $post->id) }}">
+                                    <span class="far fa-eye"></span>
+                                </a>
+                                <a class="btn btn-warning" href=" {{ route('admin.posts.edit', $post->id) }}">
+                                    <span class="far fa-edit"></span>
+                                </a>
+                                <a class="btn btn-danger" href=" {{ route('admin.posts.destroy', $post->id) }}">
+                                    <span class="far fa-trash-alt"></span>
+                                </a>
+>>>>>>> 5638e0bfab18dac673d328a2821c54d8503ac61a
                             </td>
                         </tr>
                     @endforeach
