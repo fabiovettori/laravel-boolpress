@@ -31,7 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/posts/create');
     }
 
     /**
@@ -42,7 +42,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // con una query recuero i dati dal form
+        $post = $request->all();
+        // salvo i dati recuoerati nel debug
+        $new_post = new Post();
+        $new_post->fill($post);
+        $new_post->save();
+        // faccio il redirect alla singola scheda del post
+        return redirect()->route('admin.posts.index');
     }
 
     /**
