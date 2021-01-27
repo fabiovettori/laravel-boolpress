@@ -66,9 +66,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $data = [
+            'post'=> $post
+        ];
+
+        return view('admin/posts/edit', $data);
     }
 
     /**
@@ -78,9 +82,15 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        // vado a salvare i valori inseriti nel form
+        $data= $request->all();
+        // dd($data);
+        $post->update($data);
+
+        // faccio il redirect alla view del singolo post
+        return redirect()->route('admin.posts.show', ['post'=>$post->id]);
     }
 
     /**

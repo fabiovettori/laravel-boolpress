@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             <table class="table">
                 <thead>
                     <tr>
@@ -20,7 +20,15 @@
                             <td> {{ $post->title }} </td>
                             <td> {{ $post->slug }} </td>
                             <td>
-                                <a class="btn btn-info" href=" {{ route('admin.posts.show', $post->id) }}">show</a>
+                                <a class="btn btn-info" href=" {{ route('admin.posts.show', $post->id) }}">
+                                    <span class="far fa-eye"></span>
+                                </a>
+                                <a class="btn btn-warning" href=" {{ route('admin.posts.edit', $post->id) }}">
+                                    <span class="far fa-edit"></span>
+                                </a>
+                                <a class="btn btn-danger" href=" {{ route('admin.posts.destroy', $post->id) }}">
+                                    <span class="far fa-trash-alt"></span>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
