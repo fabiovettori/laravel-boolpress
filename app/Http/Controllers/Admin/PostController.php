@@ -91,10 +91,37 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        // vado a salvare i valori inseriti nel form
+        // faccio una query andando a leggere i dati inseriti nel form
         $data = $request->all();
-        // dd($data);
-        $post->update($data);
+        $post->author = $data['author'];
+        $post->author = $data['contributor'];
+        $post->title = $data['title'];
+        $post->description = $data['description'];
+
+        // prima di salvarlo verifico se il valore dello slug inserito nel form non sia già presente (deve essere unique!)
+        $form_slug = $data['slug']; //valore trasmesso dal form
+        $post_slug = $post->slug; //valore presente nel db
+
+        if ($form_slug == $post_slug) {
+            $post->slug = $form_slug;
+            $post->save($data);
+        } else {
+            $test_slug = Post::where('slug', $form_slug)->first(); //interrogo il db e verifico se esiste uno slug uguali tra i posts del dm
+            $slug_base = $test_slug->slug;
+
+            $counter = 1; //definisco un contatore che servirà a generare uno slug univoco a partire da quello inserito dall'utente
+            while($test_slug){ //se $test_slug è vuoto la query restituisce NULL quindi non entro nel ciclo e posso salvare direttamente lo slug
+                // se sono entrato dentro al ciclo allora vuol dire che ho trovato uno slug nel db identico a quello inserito nel form dall'utente
+                $form_slug = $slug_base . '-' . $counter; //ora però devo verificare se questo nuovo slug non sia stato già generato in precedente
+                $test_slug = Post::where('slug', $form_slug)->first(); //quindi devo interrogare nuovamente il debug
+                // prima di ripetere il test del dentro al while incremento il contatore (nel caso tornasse diverso da NULL)
+                $counter ++;
+            };
+            // a questo punto posso salvae il valore dello slug
+            $post->slug = $form_slug;
+            // vado a salvare i valori inseriti
+            $post->save($data);
+        }
 
         // faccio il redirect alla view del singolo post
         return redirect()->route('admin.posts.show', ['post'=> $post->id]);

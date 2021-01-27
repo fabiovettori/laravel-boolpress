@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
+            <h1>Tutti i posts</h1>
             <table class="table">
                 <thead>
                     <tr>
