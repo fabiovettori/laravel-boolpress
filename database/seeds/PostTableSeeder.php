@@ -19,7 +19,7 @@ class PostTableSeeder extends Seeder
              $new_post->author = $faker->name();
              $new_post->contributor = $faker->name();
              $new_post->topic = $faker->name();
-             $new_post->title = 'Titolo test'; //assegno un valore fisso per verificare se funziona il controllo con il while
+             $new_post->title = $faker->sentence();
              $new_post->description = $faker->paragraph();
 
              //salvo lo slug in una variabile
