@@ -14,16 +14,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($posts as $post)
-                        <tr>
-                            <th scope="row"> {{ $post->id }} </th>
-                            <td> {{ $post->title }} </td>
-                            <td> {{ $post->slug }} </td>
-                            <td>
-                                <a class="btn btn-info" href=" {{ route('admin.posts.show', $post->id) }}">show</a>
-                            </td>
-                        </tr>
-                    @endforeach
+                    <tr>
+                        <th scope="row"> {{ $post->id }} </th>
+                        <td> {{ $post->title }} </td>
+                        <td> {{ $post->slug }} </td>
+                        <td>
+                            <a class="btn btn-info" href=" {{ route('admin.posts.index', $post->id) }}">back to index</a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
