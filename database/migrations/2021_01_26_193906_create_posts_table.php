@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('author', 50);
             $table->string('contributor', 50)->nullable();
-            $table->string('topic', 100)->nullable();
+            $table->string('topic', 100);
             $table->string('title', 100);
             $table->text('description');
             $table->string('slug', 100)->unique();

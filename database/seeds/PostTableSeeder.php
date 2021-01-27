@@ -18,6 +18,7 @@ class PostTableSeeder extends Seeder
              $new_post = new Post();
              $new_post->author = $faker->name();
              $new_post->contributor = $faker->name();
+             $new_post->topic = $faker->name();
              $new_post->title = 'Titolo test'; //assegno un valore fisso per verificare se funziona il controllo con il while
              $new_post->description = $faker->paragraph();
 
