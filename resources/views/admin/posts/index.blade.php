@@ -19,31 +19,23 @@
                             <th scope="row"> {{ $post->id }} </th>
                             <td> {{ $post->title }} </td>
                             <td> {{ $post->slug }} </td>
-                            <td>
-<<<<<<< HEAD
-                                <a class="btn btn-info p-1" href=" {{ route('admin.posts.show', $post->id) }}">
+                            <td class="d-flex">
+                                <a class="btn btn-info p-1" href=" {{ route('admin.posts.show', [$post->id]) }}">
                                     <span class="far fa-eye"></span>
                                 </a>
-                                <a class="btn btn-warning p-1" href=" {{ route('admin.posts.edit', $post->id) }}">
+                                <a class="btn btn-warning p-1 mx-1" href=" {{ route('admin.posts.edit', [$post->id]) }}">
                                     <span class="far fa-edit"></span>
                                 </a>
-                                <a class="btn btn-danger p-1" href=" {{ route('admin.posts.destroy', $post->id) }}">
-                                    <span class="far fa-trash-alt"></span>
-                                </a>
-                                <a class="btn btn-success p-1" href=" {{ route('admin.posts.create') }}">
+                                <a class="btn btn-success p-1 mx-1" href=" {{ route('admin.posts.create', [$post->id]) }}">
                                     <span class="far fa-plus-square"></span>
                                 </a>
-=======
-                                <a class="btn btn-info" href=" {{ route('admin.posts.show', $post->id) }}">
-                                    <span class="far fa-eye"></span>
-                                </a>
-                                <a class="btn btn-warning" href=" {{ route('admin.posts.edit', $post->id) }}">
-                                    <span class="far fa-edit"></span>
-                                </a>
-                                <a class="btn btn-danger" href=" {{ route('admin.posts.destroy', $post->id) }}">
-                                    <span class="far fa-trash-alt"></span>
-                                </a>
->>>>>>> 5638e0bfab18dac673d328a2821c54d8503ac61a
+                                <form class="" action="{{ route('admin.posts.destroy', [$post->id]) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger p-1" type="submit" name="button">
+                                        <span class="far fa-trash-alt"></span>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

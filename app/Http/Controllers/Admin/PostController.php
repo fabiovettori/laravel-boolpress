@@ -92,12 +92,12 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         // vado a salvare i valori inseriti nel form
-        $data= $request->all();
+        $data = $request->all();
         // dd($data);
         $post->update($data);
 
         // faccio il redirect alla view del singolo post
-        return redirect()->route('admin.posts.show', ['post'=>$post->id]);
+        return redirect()->route('admin.posts.show', ['post'=> $post->id]);
     }
 
     /**
@@ -106,8 +106,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('admin.posts.index');
     }
 }
