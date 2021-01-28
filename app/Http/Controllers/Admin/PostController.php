@@ -60,6 +60,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if (!$post) {
+            abort(404); //se il post non esiste vado in 404
+        };
+
         $data = [
             'post' => $post
         ];
@@ -75,6 +79,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if (!$post) {
+            abort(404); //se il post non esiste vado in 404
+        };
+
         $data = [
             'post'=> $post
         ];
