@@ -133,7 +133,7 @@ class PostController extends Controller
 
         // faccio il redirect alla view del singolo post (controllando prima se il salvataggio è andato a buon fine verificando se il salvataggio mi restituisce true o false)
         $saved = $post->save($data);
-        dd($saved);
+        // dd($saved);
 
         if($saved){
             // faccio il redirect alla view del singolo post + messaggio di successo

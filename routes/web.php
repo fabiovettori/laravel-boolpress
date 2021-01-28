@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 // rotte pubbliche
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/contacts', 'HomeController@contacts')->name('contacts');
-Route::get('/posts', 'PostController@index')->name('posts');
+
+// rotte pubbleche - posts
+Route::get('/posts', 'PostController@index')->name('posts.index');
+Route::get('/posts/{slug}', 'PostController@post')->name('posts.show');
 
 Auth::routes();
 
