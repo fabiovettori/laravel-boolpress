@@ -1,5 +1,17 @@
 @extends('layouts.dashboard')
 
+@if (session('status'))
+    <div class="alert alert-success m-0">
+        {{ session('status') }}
+    </div>
+
+@elseif (session('error'))
+    <div class="alert alert-danger m-0">
+        {{ session('error') }}
+    </div>
+
+@endif
+
 @section('content')
 <div class="container">
     <div class="row">

@@ -107,10 +107,10 @@ class PostController extends Controller
             $post->save($data);
         } else {
             $test_slug = Post::where('slug', $form_slug)->first(); //interrogo il db e verifico se esiste uno slug uguali tra i posts del dm
-            $slug_base = $test_slug->slug;
 
             $counter = 1; //definisco un contatore che servirà a generare uno slug univoco a partire da quello inserito dall'utente
             while($test_slug){ //se $test_slug è vuoto la query restituisce NULL quindi non entro nel ciclo e posso salvare direttamente lo slug
+                $slug_base = $test_slug->slug;
                 // se sono entrato dentro al ciclo allora vuol dire che ho trovato uno slug nel db identico a quello inserito nel form dall'utente
                 $form_slug = $slug_base . '-' . $counter; //ora però devo verificare se questo nuovo slug non sia stato già generato in precedente
                 $test_slug = Post::where('slug', $form_slug)->first(); //quindi devo interrogare nuovamente il debug
@@ -123,8 +123,17 @@ class PostController extends Controller
             $post->save($data);
         }
 
-        // faccio il redirect alla view del singolo post
-        return redirect()->route('admin.posts.show', ['post'=> $post->id]);
+        // faccio il redirect alla view del singolo post (controllando prima se il salvataggio è andato a buon fine verificando se il salvataggio mi restituisce true o false)
+        $saved = $post->save($data);
+        dd($saved);
+
+        if($saved){
+            // faccio il redirect alla view del singolo post + messaggio di successo
+            return redirect()->route('admin.posts.show', ['post'=> $post->id])->with('status', 'Post updated!');
+        } else {
+            // faccio il redirect alla view del singolo post + messaggio di errore
+            return redirect()->route('admin.posts.show', ['post'=> $post->id])->with('error', 'Something went wrong!');
+        }
     }
 
     /**
