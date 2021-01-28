@@ -5,6 +5,12 @@
     <div class="row">
         <div class="col-lg-12">
             <h1>Tutti i posts</h1>
+            <div class="text-right mb-2">
+                <a class="btn btn-success p-1 mx-1" href=" {{ route('admin.posts.create') }}">
+                    <span class="far fa-plus-square"></span>
+                    Add new post
+                </a>
+            </div>
             <table class="table">
                 <thead>
                     <tr>
@@ -26,9 +32,6 @@
                                 </a>
                                 <a class="btn btn-warning p-1 mx-1" href=" {{ route('admin.posts.edit', [$post->id]) }}">
                                     <span class="far fa-edit"></span>
-                                </a>
-                                <a class="btn btn-success p-1 mx-1" href=" {{ route('admin.posts.create', [$post->id]) }}">
-                                    <span class="far fa-plus-square"></span>
                                 </a>
                                 <form class="" action="{{ route('admin.posts.destroy', [$post->id]) }}" method="post">
                                     @csrf

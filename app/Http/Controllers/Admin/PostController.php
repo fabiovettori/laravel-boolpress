@@ -21,7 +21,7 @@ class PostController extends Controller
             'posts' => $posts
         ];
 
-        return view('admin/posts/index', $data);
+        return view('admin.posts.index', $data);
     }
 
     /**
@@ -31,7 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin/posts/create');
+        return view('admin.posts.create');
     }
 
     /**
@@ -68,7 +68,7 @@ class PostController extends Controller
             'post' => $post
         ];
 
-        return view('admin/posts/show', $data);
+        return view('admin.posts.show', $data);
     }
 
     /**
@@ -87,7 +87,7 @@ class PostController extends Controller
             'post'=> $post
         ];
 
-        return view('admin/posts/edit', $data);
+        return view('admin.posts.edit', $data);
     }
 
     /**
