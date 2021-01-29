@@ -7,6 +7,9 @@
                 <strong>Titolo</strong>
                 <p>{{ $post->title }}</p>
 
+                <strong>Category</strong>
+                <p>{{ $post->category->name }}</p>
+
                 <strong>Slug</strong>
                 <p>{{ $post->title }}</p>
 
