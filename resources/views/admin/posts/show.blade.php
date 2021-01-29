@@ -25,7 +25,7 @@
             <p>{{ $post->title }}</p>
 
             <strong>Slug</strong>
-            <p>{{ $post->title }}</p>
+            <p>{{ $post->slug }}</p>
 
             <strong>Description</strong>
             <p>{{ $post->description }}</p>
