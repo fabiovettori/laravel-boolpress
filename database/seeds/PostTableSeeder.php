@@ -33,10 +33,10 @@ class PostTableSeeder extends Seeder
              while ($test_slug) {
                  // se sono entrato nel ciclo devo assegnare allo slug un valore incrementale
                  $slug = $slug_base . '-' . $counter;
-                 // e quindi incremento il $counter
-                 $counter ++;
                  // rieseguo la query e verifico che questo nome non sia presente (se restituisce NULL esco da ciclo)
                  $test_slug = Post::where('slug', $slug)->first();
+                 // e quindi incremento il $counter
+                 $counter ++;
              };
 
              // se sono uscito dal ciclo sono sicuro che quel nome non era stato già assegnato

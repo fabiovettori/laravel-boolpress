@@ -26,10 +26,12 @@
                     </div>
 
                     <div class="col-3">
-                        <label class="font-weight-bold">Topic</label>
-                        <select class="custom-select">
-                            <option selected disabled value="">Choose...</option>
-                            <option>...</option>
+                        <label class="font-weight-bold">Category</label>
+                        <select class="custom-select" name="category_id">
+                            <option selected disabled value="">Choose category</option>
+                            @foreach ($categories as $category)
+                                <option class="text-capitalize" value="{{ $category->id }}"> {{ $category->name }} </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

@@ -81,12 +81,15 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $categories = Category::all();
+
         if (!$post) {
             abort(404); //se il post non esiste vado in 404
         };
 
         $data = [
-            'post'=> $post
+            'post'=> $post,
+            'categories' => $categories
         ];
 
         return view('admin.posts.edit', $data);
@@ -107,6 +110,7 @@ class PostController extends Controller
         $post->author = $data['contributor'];
         $post->title = $data['title'];
         $post->description = $data['description'];
+        $post->category_id = $data['category_id'];
 
         // prima di salvarlo verifico se il valore dello slug inserito nel form non sia già presente (deve essere unique!)
         $form_slug = $data['slug']; //valore trasmesso dal form
