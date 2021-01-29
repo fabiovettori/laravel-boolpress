@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -60,6 +61,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+
         if (!$post) {
             abort(404); //se il post non esiste vado in 404
         };

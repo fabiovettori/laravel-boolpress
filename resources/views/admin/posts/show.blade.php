@@ -29,6 +29,9 @@
 
             <strong>Description</strong>
             <p>{{ $post->description }}</p>
+
+            <strong>Category</strong>
+            <p>{{ $post->category ? $post->category->name : 'nd' }}</p>
         </div>
         <div class="col-lg-12 d-flex">
             <a class="btn btn-warning py-2 px-3 mx-1" href=" {{ route('admin.posts.edit', [$post->id]) }}">
