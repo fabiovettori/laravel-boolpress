@@ -29,7 +29,7 @@ class UpdatePostsTable extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
 
-            $table->dropForeign('post_category_id_foreign'); //elimino il legame di foreign
+            $table->dropForeign('posts_category_id_foreign'); //elimino il legame di foreign
             $table->dropColumn('category_id'); //Elimino la colonna creata
         });
     }
