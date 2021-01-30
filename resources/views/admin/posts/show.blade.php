@@ -33,8 +33,22 @@
 
             <strong>Category</strong>
             <p>{{ $post->category ? $post->category->name : 'nd' }}</p>
+
+            <strong>Tags</strong>
+            <br>
+            @forelse ($post->tags as $tag)
+                @if ($post->tags)
+                    <span>{{ $tag->name }}, </span>
+
+                    @if ($loop->last)
+                        <span>{{ $tag->name }}</span>
+                    @endif
+                @endif
+            @empty
+                <p>nd</p>
+            @endforelse
         </div>
-        <div class="col-lg-12 d-flex m-0">
+        <div class="col-lg-12 d-flex mt-3">
             <a class="btn shadow-sm text-dark py-2 px-3 mx-1 text-uppercase font-weight-bold" href=" {{ route('admin.posts.edit', [$post->id]) }}">
                 <span class="far fa-edit"></span>
                 Modifica

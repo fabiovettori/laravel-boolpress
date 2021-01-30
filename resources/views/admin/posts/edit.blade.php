@@ -54,6 +54,18 @@
                     <textarea class="form-control" rows="8" name="description">{{ $post->description }}</textarea>
                 </div>
 
+                <div class="form-group">
+                    <label class="font-weight-bold">Tags</label>
+                    <div class="d-flex">
+                        @foreach ($tags as $tag)
+                            <div class="custom-control custom-checkbox mr-2">
+                                <input type="checkbox" class="custom-control-input" id="{{ $tag->slug }}" name="tags[]" value="{{$tag->id}}" {{ $post->tags->contains($tag->id) ? 'checked' : ''}}>
+                                <label class="text-capitalize custom-control-label" for="{{ $tag->slug }}">{{ $tag->name }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-success px-4 text-uppercase text-white font-weight-bold">
                     Edit
                     <span class="fas fa-check"></span>

@@ -41,17 +41,17 @@
                                     <span>nd</span>
                                 @endforelse
                             </td>
-                            <td class="d-flex">
-                                <a class="btn shadow-sm p-1" href=" {{ route('admin.posts.show', [$post->id]) }}">
+                            <td class="d-flex justify-content-between">
+                                <a class="btn shadow-sm py-1 px-2" href=" {{ route('admin.posts.show', [$post->id]) }}">
                                     <span class="far fa-eye"></span>
                                 </a>
-                                <a class="btn shadow-sm p-1 mx-1" href=" {{ route('admin.posts.edit', [$post->id]) }}">
+                                <a class="btn shadow-sm py-1 px-2 mx-1" href=" {{ route('admin.posts.edit', [$post->id]) }}">
                                     <span class="far fa-edit"></span>
                                 </a>
                                 <form class="" action="{{ route('admin.posts.destroy', [$post->id]) }}" method="post">
                                     @csrf
                                     @method('delete')
-                                    <button class="btn shadow-sm p-1" type="submit" name="button">
+                                    <button class="btn shadow-sm py-1 px-2" type="submit" name="button">
                                         <span class="far fa-trash-alt"></span>
                                     </button>
                                 </form>

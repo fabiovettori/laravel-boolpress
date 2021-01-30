@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -33,8 +34,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('admin.posts.create', compact('categories'));
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -47,10 +49,12 @@ class PostController extends Controller
     {
         // con una query recuero i dati dal form
         $post = $request->all();
+
         // salvo i dati recuoerati nel debug
         $new_post = new Post();
         $new_post->fill($post);
         $new_post->save();
+        $new_post->tags()->sync($post['tags']);
         // faccio il redirect alla singola scheda del post
         return redirect()->route('admin.posts.index');
     }
@@ -84,6 +88,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
+        $tags = Category::all();
 
         if (!$post) {
             abort(404); //se il post non esiste vado in 404
@@ -91,7 +96,8 @@ class PostController extends Controller
 
         $data = [
             'post'=> $post,
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ];
 
         return view('admin.posts.edit', $data);
@@ -160,6 +166,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->sync([]);
         $post->delete();
 
         return redirect()->route('admin.posts.index');
