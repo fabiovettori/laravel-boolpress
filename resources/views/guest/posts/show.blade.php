@@ -23,7 +23,9 @@
                 <strong>Tags</strong>
                 @forelse ($post->tags as $tag)
                     @if ($post->tags)
-                        <span>{{ $tag->name }}, </span>
+                        @if (count($post->tags) > 1)
+                            <span>{{ $tag->name }}, </span>
+                        @endif
 
                         @if ($loop->last)
                             <span>{{ $tag->name }}</span>

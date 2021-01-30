@@ -118,7 +118,10 @@ class PostController extends Controller
         $post->author = $data['contributor'];
         $post->title = $data['title'];
         $post->description = $data['description'];
-        $post->category_id = $data['category_id'];
+
+        if (array_key_exists('category', $data)) {
+            $post->category_id = $data['category_id'];
+        }
 
         // prima di salvarlo verifico se il valore dello slug inserito nel form non sia già presente (deve essere unique!)
         $form_slug = $data['slug']; //valore trasmesso dal form
@@ -147,7 +150,12 @@ class PostController extends Controller
 
         // faccio il redirect alla view del singolo post (controllando prima se il salvataggio è andato a buon fine verificando se il salvataggio mi restituisce true o false)
         $saved = $post->save($data);
-        // dd($saved);
+
+        if (array_key_exists('tags', $data)) {
+            $post->tags()->sync($data['tags']);
+        } else {
+            $post->tags()->sync([]);
+        }
 
         if($saved){
             // faccio il redirect alla view del singolo post + messaggio di successo
