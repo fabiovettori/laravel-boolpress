@@ -8,7 +8,11 @@
                 <p>{{ $post->title }}</p>
 
                 <strong>Category</strong>
-                <p>{{ $post->category ?  $post->category->name : 'nd'}}</p>
+                <p class="d-flex align-center">{{ $post->category_id ?  $post->category->name : 'nd'}}
+                    <a href="{{ $post->category_id ? route('category.show', ['slug' => $post->category->slug]) : '' }} ">
+                        <span class="{{ $post->category_id ? 'fas fa-arrow-circle-right ml-2 text-dark' : 'd-none' }}"></span>
+                    </a>
+                </p>
 
                 <strong>Slug</strong>
                 <p>{{ $post->title }}</p>

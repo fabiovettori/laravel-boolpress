@@ -21,6 +21,10 @@ Route::get('/contacts', 'HomeController@contacts')->name('contacts');
 Route::get('/posts', 'PostController@index')->name('posts.index');
 Route::get('/posts/{slug}', 'PostController@post')->name('posts.show');
 
+// rotte pubbliche - categories
+Route::get('/categories', 'CategoryController@index')->name('categories.index');
+Route::get('/categories/{slug}', 'CategoryController@show')->name('category.show');
+
 Auth::routes();
 
 // gruppo di rotte admin

@@ -30,7 +30,7 @@
                         <select class="custom-select" name="category_id">
                             <option selected disabled value="">Choose category</option>
                             @foreach ($categories as $category)
-                                <option class="text-capitalize" value="{{ $category->id }}" {{$post->category->id == $category->id ? 'selected=selected' : ''}}> {{ $category->name }} </option>
+                                <option class="text-capitalize" value="{{ $category->id ? $category->id : ''}}" {{$post->category_id == $category->id ? 'selected' : ''}}> {{ $category->name }} </option>
                             @endforeach
                         </select>
                     </div>
