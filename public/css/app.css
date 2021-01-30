@@ -16143,3 +16143,7 @@ body {
   font-family: "Lato", sans-serif;
   color: #000;
 }
+
+#left-nav {
+  height: calc(100vh - 39px);
+}

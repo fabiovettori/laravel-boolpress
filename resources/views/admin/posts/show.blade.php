@@ -15,8 +15,9 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <h1>Post Details</h1>
         <div class="col-lg-12 text-right">
-            <a class="btn btn-info" href=" {{ route('admin.posts.index') }}">
+            <a class="btn btn-info text-uppercase text-white font-weight-bold" href=" {{ route('admin.posts.index') }}">
                 <i class="fas fa-arrow-circle-left"></i>
                 back to index</a>
         </div>
@@ -33,16 +34,16 @@
             <strong>Category</strong>
             <p>{{ $post->category ? $post->category->name : 'nd' }}</p>
         </div>
-        <div class="col-lg-12 d-flex">
-            <a class="btn btn-warning py-2 px-3 mx-1" href=" {{ route('admin.posts.edit', [$post->id]) }}">
+        <div class="col-lg-12 d-flex m-0">
+            <a class="btn shadow-sm text-dark py-2 px-3 mx-1 text-uppercase font-weight-bold" href=" {{ route('admin.posts.edit', [$post->id]) }}">
                 <span class="far fa-edit"></span>
                 Modifica
             </a>
             <form class="" action="{{ route('admin.posts.destroy', [$post->id]) }}" method="post">
                 @csrf
                 @method('delete')
-                <button class="btn btn-danger py-2 px-3" type="submit" name="button">
-                    <span class="far fa-trash-alt"></span>
+                <button class="btn shadow-sm text-dark py-2 px-3 text-uppercase font-weight-bold" type="submit" name="button">
+                    <span class="far fa-trash-alt "></span>
                     Elimina
                 </button>
             </form>

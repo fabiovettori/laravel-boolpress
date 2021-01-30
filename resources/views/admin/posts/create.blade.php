@@ -4,6 +4,12 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
+            <h1>Add Post</h1>
+            <div class="col-lg-12 text-right">
+                <a class="btn btn-info text-uppercase text-white font-weight-bold" href=" {{ route('admin.posts.index') }}">
+                    <i class="fas fa-arrow-circle-left"></i>
+                    back to index</a>
+            </div>
             <form action="{{ route('admin.posts.store')}}" method="POST">
                 @csrf
                 @method('POST')
@@ -55,7 +61,10 @@
                     <textarea class="form-control" rows="8" name="description"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-success px-4">Edit</button>
+                <button type="submit" class="btn btn-success px-4 text-uppercase text-white font-weight-bold">
+                    Edit
+                    <span class="fas fa-check"></span>
+                </button>
             </form>
         </div>
     </div>
