@@ -19,6 +19,20 @@
 
                 <strong>Description</strong>
                 <p>{{ $post->description }}</p>
+
+                <strong>Tags</strong>
+                @forelse ($post->tags as $tag)
+                    @if ($post->tags)
+                        <span>{{ $tag->name }}, </span>
+
+                        @if ($loop->last)
+                            <span>{{ $tag->name }}</span>
+                        @endif
+
+                    @endif
+                @empty
+                    <span>nd</span>
+                @endforelse
             </div>
         </div>
     </div>
