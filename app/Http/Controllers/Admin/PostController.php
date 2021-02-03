@@ -8,6 +8,9 @@ use App\Post;
 use App\Category;
 use App\Tag;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+
 class PostController extends Controller
 {
     /**
@@ -49,6 +52,17 @@ class PostController extends Controller
     {
         // con una query recuero i dati dal form
         $post = $request->all();
+
+        // valido i dati inseriti nel form
+        $request->validate([
+            'author' => 'max:50|required',
+            'contributor' => 'max:50|',
+            'title' => 'max:100|required',
+            'category_id' => 'exists:categories,id',
+            'slug' => 'max:100|required|unique:posts',
+            'topic' => 'max:100|required',
+            'tags' => 'exists:tags,id'
+        ]);
 
         // salvo i dati recuoerati nel debug
         $new_post = new Post();
@@ -119,6 +133,22 @@ class PostController extends Controller
         $post->title = $data['title'];
         $post->description = $data['description'];
 
+        // valido i dati inseriti nel form
+        $request->validate([
+            'author' => 'max:50|required',
+            'contributor' => 'max:50|',
+            'title' => 'max:100|required',
+            'category_id' => 'exists:categories,id',
+            'slug' => [
+                'max:100',
+                'required',
+                Rule::unique('posts')->ignore($post->id)
+            ],
+            // 'slug' => 'max:100|required|unique:posts',
+            // 'topic' => 'max:100|required',
+            'tags' => 'exists:tags,id'
+        ]);
+
         if (array_key_exists('category', $data)) {
             $post->category_id = $data['category_id'];
         }
@@ -129,7 +159,7 @@ class PostController extends Controller
 
         if ($form_slug == $post_slug) {
             $post->slug = $form_slug;
-            $post->save($data);
+
         } else {
             $test_slug = Post::where('slug', $form_slug)->first(); //interrogo il db e verifico se esiste uno slug uguali tra i posts del dm
 
@@ -144,9 +174,10 @@ class PostController extends Controller
             };
             // a questo punto posso salvae il valore dello slug
             $post->slug = $form_slug;
-            // vado a salvare i valori inseriti
-            $post->save($data);
-        }
+        };
+
+        // vado a salvare i valori inseriti
+        $post->save($data);
 
         // faccio il redirect alla view del singolo post (controllando prima se il salvataggio è andato a buon fine verificando se il salvataggio mi restituisce true o false)
         $saved = $post->save($data);

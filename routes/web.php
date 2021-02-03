@@ -31,5 +31,7 @@ Auth::routes();
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
 
     Route::get('/', 'HomeController@index')->name('index');
+    Route::get('/profile', 'HomeController@profile')->name('profile');
+    Route::post('/profile/token', 'HomeController@token')->name('token');
     Route::resource('/posts', 'PostController');
 });
